@@ -1,0 +1,11 @@
+import express from "express";
+import {deleteJob, getAllJobs,getmyJobs,postJob, updateJob,getSingleJob} from "../controllers/jobController.js";
+import {isAuthorized} from '../middlewares/auth.js';
+const router = express.Router();
+router.get('/getall',getAllJobs);
+router.post('/post',isAuthorized,postJob);
+router.get('/getmyjobs',isAuthorized,getmyJobs);
+router.put('/updateJob/:id',isAuthorized,updateJob);
+router.delete('/deleteJob/:id',isAuthorized,deleteJob);
+router.get("/:id", isAuthorized,getSingleJob);   
+export default router;
